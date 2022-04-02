@@ -8,6 +8,21 @@ const snippetSchema = new Schema({
     required: true,
     minLength: [3, "That's too short"],
   },
+  language: {
+    type: String,
+    required: true,
+  },
+  code: {
+    type: String,
+    required: true,
+  },
+  description: {
+    type: String,
+    required: true,
+  },
+  favorite: {
+    type: Boolean,
+  },
 });
 
 export const models = [
