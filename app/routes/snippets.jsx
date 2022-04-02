@@ -1,4 +1,4 @@
-import { useLoaderData, useCatch, json } from "remix";
+import { useLoaderData, useCatch, json, Outlet } from "remix";
 import connectDb from "~/db/connectDb.server.js";
 
 export async function loader({ params }) {
@@ -16,7 +16,8 @@ export default function BookPage() {
   const smippet = useLoaderData();
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">{smippet.title}</h1>
+      <h1 className="text-2xl font-bold mb-4">snippet folder</h1>
+      <Outlet />
       <code>
         <pre>{JSON.stringify(smippet, null, 2)}</pre>
       </code>

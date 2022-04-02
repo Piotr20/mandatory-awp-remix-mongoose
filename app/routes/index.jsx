@@ -16,10 +16,13 @@ export default function Index() {
         {snippets.map((snippet) => {
           return (
             <li
-              className="p-4 border-b  border-r border-custom-black hover:bg-gray-200 cursor-pointer"
+              className="p-4 border-b  border-r border-custom-black hover:bg-custom-beige cursor-pointer"
               key={snippet._id}
             >
-              <Link to={`/snippets/${snippet._id}`} className="font-bold hover:underline">
+              <Link
+                to={`/snippets/${snippet._id}`}
+                className="font-bold hover:underline"
+              >
                 {snippet.title}
               </Link>
             </li>
