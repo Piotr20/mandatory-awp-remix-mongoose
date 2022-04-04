@@ -48,7 +48,7 @@ export default function SnippetSidebar() {
       }
     });
   return (
-    <div className=" min-w-xs max-w-xs">
+    <div className=" min-w-xs max-w-xs h-snippet overflow-y-auto">
       <ul>
         {filteredSnippets.map((snippet) => {
           return (
