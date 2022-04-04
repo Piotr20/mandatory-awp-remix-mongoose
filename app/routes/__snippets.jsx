@@ -9,7 +9,6 @@ export async function loader({ params }) {
 }
 
 export default function BookPage() {
-  const smippets = useLoaderData();
   return (
     <div className="flex w-full">
       <SnippetSidebar />

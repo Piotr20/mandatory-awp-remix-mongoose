@@ -534,6 +534,7 @@ module.exports = {
       "4/6": "66.666667%",
       "5/6": "83.333333%",
       full: "100%",
+      snippet: "calc(100vh - 74px)",
       screen: "100vh",
       min: "min-content",
       max: "max-content",
@@ -622,7 +623,7 @@ module.exports = {
     maxWidth: ({ theme, breakpoints }) => ({
       none: "none",
       0: "0rem",
-      xs: "20rem",
+      xs: "18rem",
       sm: "24rem",
       md: "28rem",
       lg: "32rem",
@@ -650,6 +651,7 @@ module.exports = {
     },
     minWidth: {
       0: "0px",
+      xs: "18rem",
       full: "100%",
       min: "min-content",
       max: "max-content",

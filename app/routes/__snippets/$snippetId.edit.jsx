@@ -1,35 +1,52 @@
-import { Form, redirect, json, useActionData } from "remix";
+import { Form, redirect, json, useActionData, useLoaderData } from "remix";
 import connectDb from "~/db/connectDb.server";
 
-export async function action({ request }) {
+export async function loader({ params }) {
+  const db = await connectDb();
+  const snippet = await db.models.Snippet.findById(params.snippetId);
+
+  if (!snippet) {
+    throw new Response(`Couldn't find snippet with id ${params.snippetId}`, {
+      status: 404,
+    });
+  }
+  return json(snippet);
+}
+export async function action({ request, params }) {
   const form = await request.formData();
   const db = await connectDb();
+  const id = params.snippetId;
   const date = new Date();
   const timestamp = Date.now();
   let today =
     date.getFullYear() + "-" + date.toLocaleString("default", { month: "short" }) + "-" + date.getDate();
 
   try {
-    const newSnippet = await db.models.Snippet.create({
-      title: form.get("title"),
-      language: form.get("language"),
-      code: form.get("code"),
-      description: form.get("description"),
-      favorite: false,
-      createdAt: timestamp,
-      date: today,
-    });
-    return redirect(`/${newSnippet._id}`);
+    await db.models.Snippet.findByIdAndUpdate(
+      { _id: id },
+      {
+        $set: {
+          title: form.get("title"),
+          language: form.get("language"),
+          code: form.get("code"),
+          description: form.get("description"),
+          createdAt: timestamp,
+          date: today,
+        },
+      }
+    );
+    return redirect(`/${id}`);
   } catch (error) {
     return json({ errors: error.errors, values: Object.fromEntries(form) }, { status: 400 });
   }
 }
 
-export default function CreateSnippet() {
+export default function EditSnippet() {
   const actionData = useActionData();
+  const loaderData = useLoaderData();
   return (
     <div>
-      <h1 className="text-2xl font-bold mb-4">Create new code snippet</h1>
+      <h1 className="text-2xl font-bold mb-4">Update code snippet</h1>
       <Form method="post">
         <label htmlFor="title" className="block text-xl font-semibold">
           Title
@@ -37,9 +54,9 @@ export default function CreateSnippet() {
         <input
           type="text"
           name="title"
-          defaultValue={actionData?.values.title}
+          defaultValue={loaderData?.title}
           id="title"
-          className={` border border-custom-black mt-2  w-72 px-2 py-1 
+          className={` border border-custom-black mt-2 w-1/3 px-2 py-1 
           ${actionData?.errors.title ? "border-2 border-red-500" : null}`}
         />
         {actionData?.errors.title && <p className="text-red-500">{actionData.errors.title.message}</p>}
@@ -47,7 +64,12 @@ export default function CreateSnippet() {
         <label htmlFor="language" className="block text-xl font-semibold mt-2">
           Language
         </label>
-        <select name="language" id="language" className=" border border-custom-black mt-2  w-72 px-2 py-1">
+        <select
+          defaultValue={loaderData.language}
+          name="language"
+          id="language"
+          className=" border border-custom-black mt-2 w-1/3 px-2 py-1"
+        >
           <option value="JS">JavaScript</option>
           <option value="Php">Php</option>
           <option value="React">React</option>
@@ -65,9 +87,9 @@ export default function CreateSnippet() {
         <textarea
           type="text"
           name="code"
-          defaultValue={actionData?.values.code}
+          defaultValue={loaderData?.code}
           id="code"
-          className={` border border-custom-black mt-2  w-72 px-2 py-1 
+          className={` border border-custom-black mt-2 w-1/3 px-2 py-1 
           ${actionData?.errors.title ? "border-2 border-red-500" : null}`}
         />
         {actionData?.errors.code && <p className="text-red-500">{actionData.errors.code.message}</p>}
@@ -78,10 +100,10 @@ export default function CreateSnippet() {
         <textarea
           type="text"
           name="description"
-          defaultValue={actionData?.values.code}
+          defaultValue={loaderData.description}
           id="description"
-          className={` border border-custom-black mt-2  w-72 px-2 py-1 
-          ${actionData?.errors.title ? "border-2 border-red-500" : null}`}
+          className={` border border-custom-black mt-2 w-1/3 px-2 py-1 
+          ${actionData?.errors.description ? "border-2 border-red-500" : null}`}
         />
         {actionData?.errors.description && (
           <p className="text-red-500">{actionData.errors.description.message}</p>

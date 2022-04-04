@@ -23,6 +23,14 @@ const snippetSchema = new Schema({
   favorite: {
     type: Boolean,
   },
+  createdAt: {
+    type: Number,
+    required: true,
+  },
+  date: {
+    type: String,
+    required: true,
+  },
 });
 
 export const models = [
