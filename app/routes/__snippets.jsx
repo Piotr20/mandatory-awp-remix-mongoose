@@ -12,7 +12,7 @@ export default function BookPage() {
   return (
     <div className="flex w-full">
       <SnippetSidebar />
-      <div className="p-4 flex-grow">
+      <div className="p-4 pr-0 flex-grow">
         <Outlet />
       </div>
     </div>

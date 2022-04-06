@@ -1,4 +1,12 @@
-import { useLoaderData, useCatch, json, Form, useParams, Link, redirect } from "remix";
+import {
+  useLoaderData,
+  useCatch,
+  json,
+  Form,
+  useParams,
+  Link,
+  redirect,
+} from "remix";
 import { useState, useEffect } from "react";
 import connectDb from "~/db/connectDb.server.js";
 import { BiTrash } from "@react-icons/all-files/bi/BiTrash";
@@ -24,11 +32,17 @@ export async function action({ request, params }) {
 
   if (form.get("_method") === "favorite") {
     try {
-      await db.models.Snippet.findByIdAndUpdate({ _id: id }, { $set: { favorite: form.get("favorite") } });
+      await db.models.Snippet.findByIdAndUpdate(
+        { _id: id },
+        { $set: { favorite: form.get("favorite") } }
+      );
 
       return null;
     } catch (error) {
-      return json({ errors: error.errors, values: Object.fromEntries(form) }, { status: 400 });
+      return json(
+        { errors: error.errors, values: Object.fromEntries(form) },
+        { status: 400 }
+      );
     }
   }
   if (form.get("_method") === "delete") {
@@ -36,7 +50,10 @@ export async function action({ request, params }) {
       await db.models.Snippet.findByIdAndDelete({ _id: id });
       return redirect("/");
     } catch (error) {
-      return json({ errors: error.errors, values: Object.fromEntries(form) }, { status: 400 });
+      return json(
+        { errors: error.errors, values: Object.fromEntries(form) },
+        { status: 400 }
+      );
     }
   }
 }
@@ -53,7 +70,7 @@ export default function BookPage() {
     <div className="w-full h-snippet overflow-y-auto ">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">{snippet.title}</h1>
-        <div className="flex items-center">
+        <div className="flex items-center pr-4">
           <Link to={`/${snippet._id}/edit`}>
             <button className="mx-1 px-6 py-1 h-full text-md border border-custom-black font-semibold hover:bg-custom-black hover:text-white transition-colors duration-200">
               Edit
