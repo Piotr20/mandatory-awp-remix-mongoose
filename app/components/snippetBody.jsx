@@ -1,14 +1,31 @@
 import LanguageIcon from "./languageIcon";
 import { useRef } from "react";
+import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
+import dark from "react-syntax-highlighter/dist/cjs/styles/prism/dark";
 
 const SnippetBody = ({ snippetData }) => {
   const spinnerRef = useRef(null);
+
   return (
-    <article>
+    <article className=" pb-16">
       <LanguageIcon LanguageName={snippetData.language} className="w-12 h-12" />
-      <div className="bg-custom-beige">
+      <div className="">
         <code>
-          <pre className="my-4  p-4">{snippetData.code}</pre>
+          <pre className="my-4 ">
+            <SyntaxHighlighter
+              language={
+                snippetData.language === "vue" ||
+                snippetData.language === "angular" ||
+                snippetData.language === "node" ||
+                snippetData.language === "Another"
+                  ? "javascript"
+                  : snippetData.language
+              }
+              style={dark}
+            >
+              {snippetData.code}
+            </SyntaxHighlighter>
+          </pre>
         </code>
         <div className="flex">
           <button
@@ -19,7 +36,7 @@ const SnippetBody = ({ snippetData }) => {
                 spinnerRef.current.classList.add("hidden");
               }, 1000);
             }}
-            className="ml-4 mr-4 mb-4 px-6 py-1 h-full text-md border border-custom-black font-semibold hover:bg-custom-black hover:text-white transition-colors duration-200"
+            className=" mr-4 mb-4 px-6 py-1 h-full text-md border border-custom-black font-semibold hover:bg-custom-black hover:text-white transition-colors duration-200"
           >
             Copy
           </button>

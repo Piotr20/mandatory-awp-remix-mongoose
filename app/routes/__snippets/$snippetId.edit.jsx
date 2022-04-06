@@ -19,7 +19,11 @@ export async function action({ request, params }) {
   const date = new Date();
   const timestamp = Date.now();
   let today =
-    date.getFullYear() + "-" + date.toLocaleString("default", { month: "short" }) + "-" + date.getDate();
+    date.getFullYear() +
+    "-" +
+    date.toLocaleString("default", { month: "short" }) +
+    "-" +
+    date.getDate();
 
   try {
     await db.models.Snippet.findByIdAndUpdate(
@@ -37,7 +41,10 @@ export async function action({ request, params }) {
     );
     return redirect(`/${id}`);
   } catch (error) {
-    return json({ errors: error.errors, values: Object.fromEntries(form) }, { status: 400 });
+    return json(
+      { errors: error.errors, values: Object.fromEntries(form) },
+      { status: 400 }
+    );
   }
 }
 
@@ -59,7 +66,9 @@ export default function EditSnippet() {
           className={` border border-custom-black mt-2 w-1/3 px-2 py-1 
           ${actionData?.errors.title ? "border-2 border-red-500" : null}`}
         />
-        {actionData?.errors.title && <p className="text-red-500">{actionData.errors.title.message}</p>}
+        {actionData?.errors.title && (
+          <p className="text-red-500">{actionData.errors.title.message}</p>
+        )}
         <br />
         <label htmlFor="language" className="block text-xl font-semibold mt-2">
           Language
@@ -70,16 +79,18 @@ export default function EditSnippet() {
           id="language"
           className=" border border-custom-black mt-2 w-1/3 px-2 py-1"
         >
-          <option value="JS">JavaScript</option>
-          <option value="Php">Php</option>
-          <option value="React">React</option>
-          <option value="Vue">Vue</option>
-          <option value="Angular">Angular</option>
-          <option value="Node">Node</option>
-          <option value="Rust">Rust</option>
+          <option value="javascript">JavaScript</option>
+          <option value="php">Php</option>
+          <option value="jsx">React</option>
+          <option value="vue">Vue</option>
+          <option value="angular">Angular</option>
+          <option value="node">Node</option>
+          <option value="rust">Rust</option>
           <option value="Another">Another</option>
         </select>
-        {actionData?.errors.language && <p className="text-red-500">{actionData.errors.language.message}</p>}
+        {actionData?.errors.language && (
+          <p className="text-red-500">{actionData.errors.language.message}</p>
+        )}
         <br />
         <label htmlFor="code" className="block  text-xl font-semibold mt-2">
           Code
@@ -92,9 +103,14 @@ export default function EditSnippet() {
           className={` border border-custom-black mt-2 w-1/3 px-2 py-1 
           ${actionData?.errors.title ? "border-2 border-red-500" : null}`}
         />
-        {actionData?.errors.code && <p className="text-red-500">{actionData.errors.code.message}</p>}
+        {actionData?.errors.code && (
+          <p className="text-red-500">{actionData.errors.code.message}</p>
+        )}
         <br />
-        <label htmlFor="description" className="block text-xl font-semibold mt-2">
+        <label
+          htmlFor="description"
+          className="block text-xl font-semibold mt-2"
+        >
           Description
         </label>
         <textarea
@@ -106,7 +122,9 @@ export default function EditSnippet() {
           ${actionData?.errors.description ? "border-2 border-red-500" : null}`}
         />
         {actionData?.errors.description && (
-          <p className="text-red-500">{actionData.errors.description.message}</p>
+          <p className="text-red-500">
+            {actionData.errors.description.message}
+          </p>
         )}
         <br />
 

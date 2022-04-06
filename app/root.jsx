@@ -44,32 +44,58 @@ export default function App() {
           >
             + Add Snippet
           </Link>
-          <h2 className="w-2/3 text-xl pb-1 mb-2 mt-16 border-b text-center">Folders</h2>
+          <h2 className="w-2/3 text-xl pb-1 mb-2 mt-16 border-b text-center">
+            Folders
+          </h2>
           <Link to="/" className="hover:underline mt-2 text-center">
             All
           </Link>
-          <Link to="/?directory=JS" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=javascript"
+            className="hover:underline mt-2 text-center "
+          >
             JavaScript
           </Link>
-          <Link to="/?directory=Php" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=php"
+            className="hover:underline mt-2 text-center "
+          >
             Php
           </Link>
-          <Link to="/?directory=React" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=jsx"
+            className="hover:underline mt-2 text-center "
+          >
             React
           </Link>
-          <Link to="/?directory=Vue" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=vue"
+            className="hover:underline mt-2 text-center "
+          >
             Vue
           </Link>
-          <Link to="/?directory=Angular" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=angular"
+            className="hover:underline mt-2 text-center "
+          >
             Angular
           </Link>
-          <Link to="/?directory=Node" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=node"
+            className="hover:underline mt-2 text-center "
+          >
             Node
           </Link>
-          <Link to="/?directory=Rust" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=rust"
+            className="hover:underline mt-2 text-center "
+          >
             Rust
           </Link>
-          <Link to="/?directory=Another" className="hover:underline mt-2 text-center ">
+          <Link
+            to="/?directory=Another"
+            className="hover:underline mt-2 text-center "
+          >
             Other
           </Link>
         </header>

@@ -10,19 +10,19 @@ import { SiRust } from "@react-icons/all-files/si/SiRust";
 
 const LanguageIcon = ({ LanguageName, className }) => {
   switch (LanguageName) {
-    case "Php":
+    case "php":
       return <SiPhp className={className} />;
-    case "JS":
+    case "javascript":
       return <SiJavascript className={className} />;
-    case "React":
+    case "jsx":
       return <DiReact className={className} />;
-    case "Angular":
+    case "angular":
       return <DiAngularSimple className={className} />;
-    case "Vue":
+    case "vue":
       return <FaVuejs className={className} />;
-    case "Node":
+    case "node":
       return <FaNode className={className} />;
-    case "Rust":
+    case "rust":
       return <SiRust className={className} />;
     default:
       return <RiCodeBoxFill className={className} />;

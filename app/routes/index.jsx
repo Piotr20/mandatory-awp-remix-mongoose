@@ -44,7 +44,7 @@ export default function SnippetSidebar() {
       }
       //return the item which contains the user input
       else {
-        return snippet.title.toLowerCase().includes(searchValue);
+        return snippet.title.toLowerCase().includes(searchValue.toLowerCase());
       }
     });
   return (
@@ -52,7 +52,11 @@ export default function SnippetSidebar() {
       <ul>
         {filteredSnippets.map((snippet) => {
           return (
-            <Link key={snippet._id} to={`/${snippet._id}?${params}`} className="font-bold group ">
+            <Link
+              key={snippet._id}
+              to={`/${snippet._id}?${params}`}
+              className="font-bold group "
+            >
               <li className="p-4 px-8 border-b  border-r border-custom-black hover:bg-custom-beige cursor-pointer">
                 <span className="text-xs font-normal">
                   {snippet.date.split("-")[2] +
