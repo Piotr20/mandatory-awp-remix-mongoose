@@ -97,7 +97,7 @@ export default function Login() {
             setPassword(e.target.value);
           }}
         />
-        <button type="submit">Submit</button>
+        <button type="submit">Login</button>
       </Form>
       <Form method="post" reloadDocument className=" flex flex-col ml-8">
         <h2>SIgn up</h2>
