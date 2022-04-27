@@ -64,7 +64,7 @@ export default function BookPage() {
   const [favorite, setAsFavorite] = useState(false);
   useEffect(() => {
     setAsFavorite(snippet.favorite);
-  }, [params]);
+  }, []);
 
   return (
     <div className="w-full h-snippet overflow-y-auto ">
