@@ -103,7 +103,7 @@ export default function Login() {
         <h2>SIgn up</h2>
         <input type="hidden" name="_method" value="signup" />
 
-        <label htmlFor="email">Email</label>
+        <label htmlFor="email">Emai</label>
         <input type="email" name="email" />
         <label htmlFor="password">Password</label>
         <input type="password" name="password" />
