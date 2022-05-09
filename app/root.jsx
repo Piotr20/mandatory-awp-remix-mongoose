@@ -35,6 +35,7 @@ export default function App() {
       <head>
         <Meta />
         <Links />
+        <script></script>
       </head>
       <body className="bg-slate-100 text-slate-800 font-sans flex h-screen overflow-hidden">
         <header className=" max-w-xs mb-4 border-b-2 h-screen flex flex-col items-center bg-custom-black text-white py-4 px-8 text-base">

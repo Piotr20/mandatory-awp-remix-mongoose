@@ -33,10 +33,26 @@ const snippetSchema = new Schema({
   },
 });
 
+const usersSchema = new Schema({
+  email: {
+    type: String,
+    required: true,
+    minLength: [3, "That's too short"],
+  },
+  password: {
+    type: String,
+  },
+});
+
 export const models = [
   {
     name: "Snippet",
     schema: snippetSchema,
     collection: "Snippets",
+  },
+  {
+    name: "Auth",
+    schema: usersSchema,
+    collection: "users",
   },
 ];

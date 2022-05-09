@@ -14,7 +14,7 @@ export default function SnippetSidebar() {
   const searchValue = params.get("query");
   const sortBy = params.get("sortBy");
   const directory = params.get("directory");
-
+  console.log(sortBy);
   const filteredSnippets = snippets
     .sort((a, b) => {
       if (sortBy === null || sortBy === undefined) {
