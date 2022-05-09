@@ -1,7 +1,7 @@
 import LanguageIcon from "./languageIcon";
 import { useRef } from "react";
 import SyntaxHighlighter from "react-syntax-highlighter/dist/cjs/prism";
-import dark from "react-syntax-highlighter/dist/cjs/styles/prism/dark";
+import dark from "react-syntax-highlighter/dist/cjs/styles/prism/one-light";
 
 const SnippetBody = ({ snippetData }) => {
   const spinnerRef = useRef(null);
